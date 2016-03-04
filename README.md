@@ -1,3 +1,5 @@
 # gcenter
-## 基于onethink框架的游戏管家
+## 安装方法
+### 1.克隆到本地
+    git clone https://github.com/beaplat-61f/gcenter.git
 
