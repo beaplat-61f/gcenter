@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>category tree</title>
+</head>
+<body>
+<volist name="category" id="cate">
+    <li><span><a href="{:U('/category='.$cate['name'])}">{$cate.title}</a>
+        <img src="{$cate.icon|get_cover='path'}" alt="{$cate.title}">
+			<if condition="$cate['child'] neq false">
+                <ul>
+                    <volist name="cate['child']" id="cate_sub">
+                        <li><span><a href="{:U('/category='.$cate_sub['name'])}">{$cate_sub.title}</a>
+					<if condition="$cate_sub['child']">
+                        <ul>
+                            <volist name="cate_sub['child']" id="cate_sub_two">
+                                <li><span><a
+                                        href="{:U('/category='.$cate_sub_two['name'])}">{$cate_sub_two.title}</a></span>
+                                </li>
+                            </volist>
+                        </ul>
+                    </if>
+				</span></li>
+                    </volist>
+                </ul>
+            </if>
+		</span></li>
+</volist>
+
+</body>
+</html>
