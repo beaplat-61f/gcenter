@@ -1,0 +1,12 @@
+[ 2016-02-29T19:46:11+08:00 ] 10.0.2.2 /index.php?s=/admin/think/lists/model/topic.html
+ERR: 1146:Table 'onethink.onethink_topic' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `onethink_topic`
+ERR: 1146:Table 'onethink.onethink_topic' doesn't exist
+ [ SQL语句 ] : SELECT ``,`id` FROM `onethink_topic` ORDER BY id DESC LIMIT 0,10  
+ERR: 1146:Table 'onethink.onethink_topic' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `onethink_topic` LIMIT 1  
+
+[ 2016-02-29T19:53:06+08:00 ] 10.0.2.2 /index.php?s=/admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `onethink_document` ORDER BY id DESC LIMIT 0,10  
+

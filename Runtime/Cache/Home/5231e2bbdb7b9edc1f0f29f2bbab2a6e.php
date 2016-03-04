@@ -82,31 +82,33 @@
 <div id="main-container" class="container">
     <div class="row">
         
-<!-- 左侧 nav
-================================================== -->
-    <div class="span3 bs-docs-sidebar">
-        <ul class="nav nav-list bs-docs-sidenav">
-            <?php echo W('Category/lists', array(1, true));?>
-        </ul>
-    </div>
-
+        <!-- 左侧 nav
+        ================================================== -->
+            <div class="span3 bs-docs-sidebar">
+                
+                <ul class="nav nav-list bs-docs-sidenav">
+                    <?php echo W('Category/lists', array($category['id'], ACTION_NAME == 'index'));?>
+                </ul>
+            </div>
+        
         
     <div class="span9">
         <!-- Contents
         ================================================== -->
         <section id="contents">
-            <?php $category=D('Category')->getChildrenId(1);$__LIST__ = D('Document')->page(!empty($_GET["p"])?$_GET["p"]:1,10)->lists($category, '`level` DESC,`id` DESC', 1,true); if(is_array($__LIST__)): $i = 0; $__LIST__ = $__LIST__;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$article): $mod = ($i % 2 );++$i;?><div class="">
-                    <h3><a href="<?php echo U('Article/detail?id='.$article['id']);?>"><?php echo ($article["title"]); ?></a></h3>
+            <?php $category=D('Category')->getChildrenId($category['id']);$__LIST__ = D('Document')->page(!empty($_GET["p"])?$_GET["p"]:1,10)->lists($category, '`level` DESC,`id` DESC', 1,true); if(is_array($__LIST__)): $i = 0; $__LIST__ = $__LIST__;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><div class="">
+                    <h3><a href="<?php echo U('Article/detail?id='.$list['id']);?>"><?php echo ($list["title"]); ?></a></h3>
                 </div>
                 <div>
-                    <p class="lead"><?php echo ($article["description"]); ?></p>
+                    <p class="lead"><?php echo ($list["description"]); ?></p>
                 </div>
                 <div>
-                    <span><a href="<?php echo U('Article/detail?id='.$article['id']);?>">查看全文</a></span>
+                    <span><a href="<?php echo U('Article/detail?id='.$list['id']);?>">查看全文</a></span>
                     <span class="pull-right">
-                        <span class="author"><?php echo (get_username($article["uid"])); ?></span>
-                        <span>于 <?php echo (date('Y-m-d H:i',$article["create_time"])); ?></span> 发表在 <span>
-                        <a href="<?php echo U('Article/lists?category='.get_category_name($article['category_id']));?>"><?php echo (get_category_title($article["category_id"])); ?></a></span> ( 阅读：<?php echo ($article["view"]); ?> )
+                        <span class="author"><?php echo (get_username($list["uid"])); ?></span>
+                        <span>于 <?php echo (date('Y-m-d H:i',$list["create_time"])); ?></span> 发表在 <span>
+                        <a href="<?php echo U('Article/lists?category='.get_category_name($list['category_id']));?>"><?php echo (get_category_title($list["category_id"])); ?></a></span> 
+                        <span>阅读( <?php echo ($list["view"]); ?> )</span>&nbsp;&nbsp;
                     </span>
                 </div>
                 <hr/><?php endforeach; endif; else: echo "" ;endif; ?>
